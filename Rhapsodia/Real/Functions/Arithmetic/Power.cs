@@ -65,11 +65,11 @@ public class Power : RealFunction
                 return 1d.ToRealConstant();
             }
 
-            var newExponent = (Addition)((RealFunction)Exponent - 1d.ToRealConstant());
-            newExponent.MergeConstants();
+            var newExponent = ((RealFunction)Exponent - 1d.ToRealConstant())
+                .ReduceIfPossible();
 
-            var multiply = (Multiplication)((RealFunction)Exponent * ((RealFunction)Base ^ newExponent) * (RealFunction)Base.DifferentiateWithRespectTo(var));
-            multiply.MergeConstants();
+            var multiply = ((RealFunction)Exponent * ((RealFunction)Base ^ newExponent) * (RealFunction)Base.DifferentiateWithRespectTo(var))
+                .ReduceIfPossible();
 
             return multiply;
         }

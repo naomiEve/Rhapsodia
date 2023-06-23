@@ -32,9 +32,8 @@ public static class IRealFunctionExtensions
         {
             var subbed = (Addition)add.Arguments.Aggregate((RealFunction)0d.ToRealConstant(), 
                 (acc, val) => acc + (RealFunction)val.Negate());
-            subbed.MergeConstants();
 
-            return subbed;
+            return subbed.ReduceIfPossible();
         }
 
         return new Negation()

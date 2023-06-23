@@ -37,9 +37,9 @@ public abstract class RealFunction : IRealFunction
     /// <param name="left">The left function.</param>
     /// <param name="right">The right function.</param>
     /// <returns>The new function.</returns>
-    public static RealFunction operator-(RealFunction left, RealFunction right)
+    public static Addition operator-(RealFunction left, RealFunction right)
     {
-        return new Arithmetic.Addition()
+        return (Addition)new Addition()
             .PushArgument(left)
             .PushArgument(-right);
     }
@@ -50,7 +50,7 @@ public abstract class RealFunction : IRealFunction
     /// <param name="left">The left function.</param>
     /// <param name="right">The right function.</param>
     /// <returns>The new function.</returns>
-    public static RealFunction operator ^(RealFunction left, RealFunction right)
+    public static Power operator ^(RealFunction left, RealFunction right)
     {
         return new Power(left, right);
     }
@@ -71,9 +71,9 @@ public abstract class RealFunction : IRealFunction
     /// <param name="left">The left function.</param>
     /// <param name="right">The right function.</param>
     /// <returns>The new function.</returns>
-    public static RealFunction operator *(RealFunction left, RealFunction right)
+    public static Multiplication operator *(RealFunction left, RealFunction right)
     {
-        return new Arithmetic.Multiplication()
+        return (Multiplication)new Multiplication()
             .PushArgument(left)
             .PushArgument(right);
     }
