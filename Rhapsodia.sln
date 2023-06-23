@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhapsodia", "Rhapsodia\Rhapsodia.csproj", "{32448C6C-5905-4001-A662-94E437A034DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhapsodia.SampleApp", "Rhapsodia.SampleApp\Rhapsodia.SampleApp.csproj", "{89BA2318-3D42-4418-8E5F-3B3937322926}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32448C6C-5905-4001-A662-94E437A034DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32448C6C-5905-4001-A662-94E437A034DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32448C6C-5905-4001-A662-94E437A034DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32448C6C-5905-4001-A662-94E437A034DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89BA2318-3D42-4418-8E5F-3B3937322926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89BA2318-3D42-4418-8E5F-3B3937322926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89BA2318-3D42-4418-8E5F-3B3937322926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89BA2318-3D42-4418-8E5F-3B3937322926}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50A0630B-4B09-49D6-81CC-2708C191120D}
+	EndGlobalSection
+EndGlobal
