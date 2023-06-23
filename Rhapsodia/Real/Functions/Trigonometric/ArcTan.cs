@@ -1,41 +1,41 @@
 ﻿using Rhapsodia.Real.Differentiation;
+using Rhapsodia.Real.Extensions;
 
-namespace Rhapsodia.Real.Functions;
+namespace Rhapsodia.Real.Functions.Trigonometric;
 
 /// <summary>
-/// The exponentiation function (e^x).
+/// The inverse tangent function.
 /// </summary>
-public class Exp : CompositeRealFunction
+public class ArcTan : CompositeRealFunction
 {
     /// <summary>
-    /// Construct a new exponentiation function.
+    /// Constructs a new arctangent.
     /// </summary>
     /// <param name="inner">The inner function.</param>
-    public Exp(IRealFunction inner)
+    public ArcTan(IRealFunction inner) 
         : base(inner)
     {
-
     }
 
     /// <inheritdoc/>
     public override double? Evaluate()
     {
-        var innerValue = Inner.Evaluate();
-        if (!innerValue.HasValue)
+        var inner = Inner.Evaluate();
+        if (!inner.HasValue)
             return null;
 
-        return Math.Exp(innerValue.Value);
+        return Math.Atan(inner.Value);
     }
 
     /// <inheritdoc/>
     protected override IRealDifferentiable DifferentiateWithInnerAs(RealFunction f)
     {
-        return new Exp(f);
+        return (1d.ToRealConstant() + (f ^ 2d.ToRealConstant())) ^ -1d.ToRealConstant();
     }
 
     /// <inheritdoc/>
     protected override string OuterFunctionToText()
     {
-        return "Exp";
+        return "ArcTan";
     }
 }

@@ -1,19 +1,19 @@
 ﻿using Rhapsodia.Real.Differentiation;
 using Rhapsodia.Real.Extensions;
 
-namespace Rhapsodia.Real.Functions;
+namespace Rhapsodia.Real.Functions.Trigonometric;
 
 /// <summary>
-/// The natural logarithm.
+/// The tangent function.
 /// </summary>
-public class Ln : CompositeRealFunction
+public class Tan : CompositeRealFunction
 {
     /// <summary>
-    /// Construct a new natural logarithm.
+    /// Creates a new tangent function.
     /// </summary>
-    /// <param name="inner">The inner function.</param>
-    public Ln(IRealFunction inner)
-        : base(inner)
+    /// <param name="outer">The outer function.</param>
+    public Tan(IRealFunction outer)
+        : base(outer)
     {
 
     }
@@ -21,22 +21,22 @@ public class Ln : CompositeRealFunction
     /// <inheritdoc/>
     public override double? Evaluate()
     {
-        var innerValue = Inner.Evaluate();
-        if (!innerValue.HasValue)
+        var inner = Inner.Evaluate();
+        if (!inner.HasValue)
             return null;
 
-        return Math.Log(innerValue.Value);
+        return Math.Tan(inner.Value);
     }
 
     /// <inheritdoc/>
     protected override IRealDifferentiable DifferentiateWithInnerAs(RealFunction f)
     {
-        return f ^ -1d.ToRealConstant();
+        return new Sec(f) ^ 2d.ToRealConstant();
     }
 
     /// <inheritdoc/>
     protected override string OuterFunctionToText()
     {
-        return "Ln";
+        return "Tan";
     }
 }
