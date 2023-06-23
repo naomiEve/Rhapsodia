@@ -1,4 +1,6 @@
-﻿namespace Rhapsodia.Real.Extensions;
+﻿using Rhapsodia.Definitions;
+
+namespace Rhapsodia.Real.Extensions;
 
 /// <summary>
 /// Double extensions.
@@ -12,6 +14,13 @@ public static class DoubleExtensions
     /// <returns>The resulting constant.</returns>
     public static RealConstant ToRealConstant(this double value)
     {
-        return new RealConstant(value);
+        var maybeConstant = ConstantPool<double>.Get(value);
+        if (maybeConstant != null)
+            return (RealConstant)maybeConstant;
+
+        var constant = new RealConstant(value);
+        ConstantPool<double>.Add(constant);
+
+        return constant;
     }
 }

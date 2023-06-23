@@ -5,7 +5,7 @@ using Rhapsodia.Real.Functions.Trigonometric;
 
 var x = new RealVariable("x", 5);
 var y = new RealVariable("y", 7);
-RealFunction f = new Sin(x ^ 2d.ToRealConstant()) ^ 6d.ToRealConstant();
+RealFunction f = new Exp(x ^ 2d.ToRealConstant());
 
 while (true)
 {

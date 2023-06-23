@@ -26,6 +26,10 @@ public static class IArithmeticExtensions
         if (func.Arguments.Count == 1)
             return func.Arguments[0];
 
+        // If we have no elements, this entire block is just equal to 0.
+        if (func.Arguments.Count == 0)
+            return 0d.ToRealConstant();
+
         // Otherwise, try to reduce all the elements inside.
         for (var i = 0; i < func.Arguments.Count; i++)
         {
