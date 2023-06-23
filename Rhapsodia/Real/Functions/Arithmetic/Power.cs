@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rhapsodia.Real.Differentiation;
+﻿using Rhapsodia.Real.Differentiation;
 using Rhapsodia.Real.Extensions;
 
 namespace Rhapsodia.Real.Functions.Arithmetic;
@@ -78,7 +73,10 @@ public class Power : RealFunction
         // This uses the formula (n^x)' = n^x(lnn)
         else if (isBaseConstant && !isExponentConstant)
         {
-            throw new NotImplementedException();
+            var multiply = ((RealFunction)Base ^ (RealFunction)Exponent) * new Ln(Base);
+            multiply *= (RealFunction)Exponent.DifferentiateWithRespectTo(var);
+
+            return multiply.ReduceIfPossible();
         }
 
         // Otherwise, we have a function of type function to a function.
