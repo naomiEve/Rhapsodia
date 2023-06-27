@@ -19,6 +19,55 @@ public abstract class RealFunction : IRealFunction
     public abstract bool IsPseudoConstant(RealVariable var);
 
     /// <summary>
+    /// Returns the taylor expansion for the given function, relative to a point a, and a variable x.
+    /// </summary>
+    /// <param name="a">The point.</param>
+    /// <param name="var">The variable the function will be differentiated in respect to.</param>
+    /// <param name="terms">How many terms of the taylor expansion should be computed.</param>
+    /// <returns>The taylor expansion for this function.</returns>
+    public RealFunction TaylorExpansion(int a, RealVariable var, int terms)
+    {
+        // Temporarily set the value of the variable to a.
+        var prevVal = var.Value;
+        var.Value = a;
+
+        var f = new Addition();
+        f.PushArgument(Evaluate()!.Value.ToRealConstant());
+
+        if (terms == 0)
+        {
+            // Reset the value.
+            var.Value = prevVal;
+            return f;
+        }
+
+        var differential = DifferentiateWithRespectTo(var) as RealFunction;
+        var factorial = 1d;
+
+        for (var i = 1; i < terms + 1; i++)
+        {
+            var multiplication = new Multiplication();
+            multiplication.PushArgument(differential!.Evaluate()!.Value.ToRealConstant());
+            multiplication.PushArgument(factorial.ToRealConstant() ^ -1d.ToRealConstant());
+            
+            multiplication.PushArgument((var - ((double)a).ToRealConstant()).ReduceIfPossible() ^ ((double)i).ToRealConstant());
+
+            // Discard this if it has any zeroes.
+            if (!multiplication.HasZeroes())
+                f.PushArgument(multiplication.ReduceIfPossible());
+
+            factorial *= (i + 1);
+
+            differential = differential.DifferentiateWithRespectTo(var) as RealFunction;
+        }
+
+        // Reset the value.
+        var.Value = prevVal;
+
+        return f.ReduceIfPossible();
+    }
+
+    /// <summary>
     /// Adds two functions together.
     /// </summary>
     /// <param name="left">The left function.</param>

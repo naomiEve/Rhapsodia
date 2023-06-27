@@ -77,4 +77,15 @@ public class Multiplication : ArithmeticFunction
 
         return addStack;
     }
+
+    /// <summary>
+    /// Does this multiplication have any zeroes?
+    /// </summary>
+    /// <returns>Whether this multiplication has any zeroes.</returns>
+    public bool HasZeroes()
+    {
+        return Arguments.Where(arg => arg is RealConstant)
+            .Select(arg => arg as RealConstant)
+            .Any(arg => arg!.Value == 0d);
+    }
 }

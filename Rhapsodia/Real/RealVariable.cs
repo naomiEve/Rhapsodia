@@ -17,7 +17,7 @@ public class RealVariable : RealFunction,
     /// <summary>
     /// The value of the variable.
     /// </summary>
-    public double? Value { get; init; }
+    public double? Value { get; set; }
 
     /// <summary>
     /// Creates a new real-valued variable.
